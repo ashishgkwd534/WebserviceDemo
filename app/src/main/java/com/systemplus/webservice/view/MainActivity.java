@@ -5,14 +5,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.systemplus.webservice.R;
+//import com.systemplus.webservice.adapter.MovieClassAdapter;
 import com.systemplus.webservice.api.ApiClient;
 import com.systemplus.webservice.api.ApiInterface;
 import com.systemplus.webservice.model.MovieData;
 import com.systemplus.webservice.model.Result;
+import com.systemplus.webservice.util.RecyclerItemClickListener;
+import com.systemplus.webservice.view.MovieClassAdapter;
 
 import java.util.List;
 
@@ -23,9 +26,10 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView moviesList;
-
+    List<Result> moviesResult;
     private static final String API_KEY = "7e8f60e325cd06e164799af1e317d7a7";
     private ProgressDialog mProgressDialog;
+    private MovieClassAdapter mMovieClassAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,16 @@ public class MainActivity extends AppCompatActivity {
 
         moviesList = findViewById(R.id.moviesList);
 
+        moviesList.addOnItemTouchListener(
+                new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Result  result = mMovieClassAdapter.getItem();
+
+                    }
+                })
+        );
+
         Call<MovieData> call = apiService.getTopRatedMovies(API_KEY);
 
         showProgressDialog();
@@ -44,11 +58,11 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<MovieData> call, Response<MovieData> response) {
                 hidProgressDialog();
                 MovieData movieData = response.body();
-                List<Result> moviesResult = movieData.getResults();
+                moviesResult = movieData.getResults();
 
-                MovieClassAdapter movieClassAdapter = new MovieClassAdapter(moviesResult, MainActivity.this);
+                mMovieClassAdapter = new MovieClassAdapter(moviesResult, MainActivity.this);
                 moviesList.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-                moviesList.setAdapter(movieClassAdapter);
+                moviesList.setAdapter(mMovieClassAdapter);
 
             }
 
@@ -61,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void hidProgressDialog() {
-        if(mProgressDialog!=null && mProgressDialog.isShowing()){
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
             mProgressDialog.dismiss();
         }
 
@@ -73,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
         mProgressDialog.setCancelable(false);
         mProgressDialog.show();
     }
-
 
 
     private void showToast(String message) {

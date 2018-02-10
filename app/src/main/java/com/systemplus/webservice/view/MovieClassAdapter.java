@@ -59,4 +59,9 @@ public class MovieClassAdapter extends RecyclerView.Adapter<MovieClassAdapter.Mo
 
         }
     }
+    public List<Result> getItem(){
+
+
+        return results;
+    }
 }
