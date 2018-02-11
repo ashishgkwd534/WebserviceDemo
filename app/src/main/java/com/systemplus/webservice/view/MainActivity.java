@@ -1,6 +1,7 @@
 package com.systemplus.webservice.view;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,6 +28,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String MOVIE_DETAILS ="MOVIE_DETAILS" ;
     RecyclerView moviesList;
     List<Result> moviesResult;
     List<Result> moviesDetails;
@@ -57,7 +59,10 @@ public class MainActivity extends AppCompatActivity {
                             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                                 hidProgressDialog();
                                 MoviesResponse moviesResponse = response.body();
-                                showToast(new Gson().toJson(moviesResponse).toString());
+                                //showToast(new Gson().toJson(moviesResponse).toString());
+                                Intent intent = new Intent(MainActivity.this, MoviedetailsActivity.class);
+                                intent.putExtra(MOVIE_DETAILS, moviesResponse);
+                                startActivity(intent);
                             }
 
                             @Override
