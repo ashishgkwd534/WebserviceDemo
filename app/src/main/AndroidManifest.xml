@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.MovieView" />
-        <activity android:name=".view.MoviedetailsActivity"></activity>
+        <activity android:name=".view.MoviedetailsActivity" />
+        <activity android:name=".view.BaseActivity"></activity>
     </application>
 
 </manifest>

@@ -26,7 +26,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     public static final String MOVIE_DETAILS ="MOVIE_DETAILS" ;
     RecyclerView moviesList;
@@ -99,22 +99,5 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void hidProgressDialog() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
 
-    }
-
-    private void showProgressDialog() {
-        mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setMessage("Loading data, Please wait");
-        mProgressDialog.setCancelable(false);
-        mProgressDialog.show();
-    }
-
-
-    private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
 }
