@@ -8,14 +8,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.systemplus.webservice.R;
 //import com.systemplus.webservice.adapter.MovieClassAdapter;
 import com.systemplus.webservice.api.ApiClient;
 import com.systemplus.webservice.api.ApiInterface;
 import com.systemplus.webservice.model.MovieData;
+import com.systemplus.webservice.model.MoviesResponse;
 import com.systemplus.webservice.model.Result;
 import com.systemplus.webservice.util.RecyclerItemClickListener;
-import com.systemplus.webservice.view.MovieClassAdapter;
+//import com.systemplus.webservice.view.MovieClassAdapter;
 
 import java.util.List;
 
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView moviesList;
     List<Result> moviesResult;
+    List<Result> moviesDetails;
     private static final String API_KEY = "7e8f60e325cd06e164799af1e317d7a7";
     private ProgressDialog mProgressDialog;
     private MovieClassAdapter mMovieClassAdapter;
@@ -44,8 +47,25 @@ public class MainActivity extends AppCompatActivity {
                 new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Result  result = mMovieClassAdapter.getItem();
+                        //view.getlay
+                       Result result = mMovieClassAdapter.getItem(position);
+                       // Toast.makeText(this,"done",Toast.LENGTH_SHORT).toString();
+                        //mMovieClassAdapter = new MovieClassAdapter(moviesResult,MainActivity.this);
+                        Call<MoviesResponse> call= apiService.getMovieDetails(result.getId(),API_KEY);
+                        call.enqueue(new Callback<MoviesResponse>() {
+                            @Override
+                            public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
+                                hidProgressDialog();
+                                MoviesResponse moviesResponse = response.body();
+                                showToast(new Gson().toJson(moviesResponse).toString());
+                            }
 
+                            @Override
+                            public void onFailure(Call<MoviesResponse> call, Throwable t) {
+                                hidProgressDialog();
+
+                            }
+                        });
                     }
                 })
         );

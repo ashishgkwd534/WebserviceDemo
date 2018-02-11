@@ -47,6 +47,7 @@ public class MovieClassAdapter extends RecyclerView.Adapter<MovieClassAdapter.Mo
         return results.size();
     }
 
+
     class MovieHolder extends RecyclerView.ViewHolder {
         TextView txtTitle, txtOverView, txtRating, txtVote;
 
@@ -59,9 +60,9 @@ public class MovieClassAdapter extends RecyclerView.Adapter<MovieClassAdapter.Mo
 
         }
     }
-    public List<Result> getItem(){
 
-
-        return results;
+    public Result getItem(int position) {
+        return results.get(position);
     }
+
 }
