@@ -22,7 +22,8 @@
         <activity android:name=".view.MoviedetailsActivity" />
         <activity android:name=".view.BaseActivity" />
         <activity android:name=".view.MainActivity" />
-        <activity android:name=".view.LoginActivity"></activity>
+        <activity android:name=".view.LoginActivity" />
+        <activity android:name=".view.DexterpermissionActivity"></activity>
     </application>
 
 </manifest>
