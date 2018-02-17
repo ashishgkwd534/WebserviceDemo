@@ -68,6 +68,13 @@ Button btnMovie,btnPost,btnGooglrapi,btnPermission;
 
             }
         });
+        btnGooglrapi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(HomeActivity.this,MapsDemoActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
