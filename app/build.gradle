@@ -30,6 +30,7 @@ dependencies {
     //google map dependancy
     implementation 'com.google.android.gms:play-services-maps:11.8.0'
     implementation 'com.google.android.gms:play-services-location:11.8.0'
+    implementation 'com.google.android.gms:play-services-places:11.8.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
@@ -53,7 +54,6 @@ dependencies {
     compile 'hani.momanii.supernova_emoji_library:supernova-emoji-library:0.0.2'
 //web view dependancy
     compile 'com.github.bumptech.glide:glide:3.7.0'
-
 
 
 }

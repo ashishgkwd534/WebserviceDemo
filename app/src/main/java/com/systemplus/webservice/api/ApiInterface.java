@@ -5,6 +5,7 @@ import com.systemplus.webservice.model.LoginResponse;
 import com.systemplus.webservice.model.MovieData;
 import com.systemplus.webservice.model.MoviesResponse;
 import com.systemplus.webservice.model.PolyLineResponse;
+import com.systemplus.webservice.model.direction.ResponseDirection;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -29,4 +30,7 @@ public interface ApiInterface {
 
     @GET
     Call<PolyLineResponse> getPolyLine(@Url String url);
+
+    @GET
+    Call<ResponseDirection> getDistance(@Url String url);
 }

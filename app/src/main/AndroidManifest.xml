@@ -8,8 +8,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -26,11 +25,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.HomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".view.MovieView" />
         <activity android:name=".view.MoviedetailsActivity" />
@@ -39,6 +34,13 @@
         <activity android:name=".view.LoginActivity" />
         <activity android:name=".view.DexterpermissionActivity" />
         <activity android:name=".view.WebViewActivity" />
+        <activity android:name=".view.MapsDemo1Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -53,7 +55,8 @@
 
         <activity
             android:name=".view.MapsDemoActivity"
-            android:label="@string/title_activity_maps_demo"></activity>
+            android:label="@string/title_activity_maps_demo" />
+
     </application>
 
 </manifest>
